@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - MARUTIBILLING</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background:#f4f6f9; margin:0; }
+        .header { background:#007bff; padding:20px; color:white; text-align:center; font-size:22px; }
+        .container { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; padding:30px; }
+        .card {
+            background:white; padding:20px; border-radius:12px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.1); text-align:center;
+        }
+        .card h3 { margin:10px 0; color:#2c3e50; }
+        .card p { font-size:20px; font-weight:bold; margin:5px 0; }
+        .chart-box {
+            grid-column:span 3;
+            background:white; padding:20px; border-radius:12px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.1);
+        }
+        canvas { width:100%!important; height:350px!important; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        📊 MARUTIBILLING - Business Dashboard
+    </div>
+
+    <div class="container">
+        <!-- Example Cards -->
+        <div class="card">
+            <h3>Today's Sales</h3>
+            <p>₹ {{ today_sales }}</p>
+        </div>
+        <div class="card">
+            <h3>This Month</h3>
+            <p>₹ {{ month_sales }}</p>
+        </div>
+        <div class="card">
+            <h3>This Year</h3>
+            <p>₹ {{ year_sales }}</p>
+        </div>
+
+        <!-- Sales Trend Graph -->
+        <div class="chart-box">
+            <h3>📈 Monthly Sales Trend</h3>
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('salesChart').getContext('2d');
+
+        // Gradient color
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(0,123,255,0.7)');
+        gradient.addColorStop(1, 'rgba(0,123,255,0.1)');
+
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ months|safe }},   // ['Jan','Feb',...]
+                datasets: [{
+                    label: 'Monthly Sales (₹)',
+                    data: {{ monthly_sales|safe }}, // [12000,15000,...]
+                    backgroundColor: gradient,
+                    borderColor: '#007bff',
+                    borderWidth: 3,
+                    pointBackgroundColor: '#007bff',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive:true,
+                plugins: {
+                    legend: { display:false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero:true,
+                        ticks: {
+                            callback: function(value){ return "₹ " + value; }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1200,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

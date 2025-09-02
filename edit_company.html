@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Company - MARUTIBILLING</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#eef2f3; padding:40px; }
+        .box {
+            background:white; padding:30px; border-radius:12px; width:500px;
+            margin:auto; box-shadow:0 6px 20px rgba(0,0,0,0.15);
+        }
+        h2 { text-align:center; margin-bottom:20px; color:#2c3e50; }
+        input {
+            width:95%; padding:12px; margin:8px 0;
+            border-radius:8px; border:1px solid #ccc; font-size:14px;
+        }
+        button {
+            width:100%; padding:12px;
+            background:#007bff; color:white; border:none;
+            border-radius:8px; font-size:15px; cursor:pointer;
+        }
+        button:hover { background:#0056b3; }
+        a { display:block; margin-top:15px; text-align:center; color:#2980b9; text-decoration:none; }
+        a:hover { text-decoration:underline; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>✏️ Edit Company</h2>
+        <form method="POST">
+            <input type="text" name="company_name" value="{{ company['name'] }}" required>
+            <input type="text" name="gst" value="{{ company['gst'] }}" required>
+            <input type="email" name="email" value="{{ company['email'] }}" required>
+            <input type="text" name="mobile" value="{{ company['mobile'] }}" required>
+            <input type="text" name="address" value="{{ company['address'] }}" required>
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="/edit_company_list">⬅ Back to Company List</a>
+    </div>
+</body>
+</html>

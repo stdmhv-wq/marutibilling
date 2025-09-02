@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Companies - MARUTIBILLING</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#f0f2f5; padding:40px; }
+        .box {
+            background:white; padding:30px; border-radius:12px; width:800px;
+            margin:auto; box-shadow:0 6px 20px rgba(0,0,0,0.15);
+        }
+        h2 { text-align:center; margin-bottom:20px; color:#2c3e50; }
+        table { width:100%; border-collapse:collapse; }
+        th, td { padding:12px; border-bottom:1px solid #ddd; text-align:center; }
+        th { background:#007bff; color:white; }
+        tr:hover { background:#f9f9f9; }
+        a.action {
+            text-decoration:none; padding:6px 10px; border-radius:6px; font-weight:bold;
+        }
+        a.edit { background:#ffc107; color:#000; }
+        a.edit:hover { background:#e0a800; }
+        .back {
+            display:block; margin-top:20px; text-align:center; text-decoration:none;
+            color:#007bff; font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>✏️ Edit Companies</h2>
+        <table>
+            <tr>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>GST</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            {% for c in companies %}
+            <tr>
+                <td>
+                    {% if c['logo'] %}
+                        <img src="{{ url_for('static', filename='uploads/' ~ c['logo']) }}" alt="Logo" width="40">
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ c['name'] }}</td>
+                <td>{{ c['gst'] }}</td>
+                <td>{{ c['email'] }}</td>
+                <td>{{ c['mobile'] }}</td>
+                <td>{{ c['address'] }}</td>
+                <td>
+                    <a href="/edit_company/{{ loop.index0 }}" class="action edit">✏️ Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/companies" class="back">⬅ Back to Companies</a>
+    </div>
+</body>
+</html>

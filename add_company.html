@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Company - MARUTIBILLING</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0; padding: 0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            padding: 30px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+        input, select {
+            width: 95%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: #218838; }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>➕ Add New Company</h2>
+        <form method="POST" action="/add_company" enctype="multipart/form-data">
+            <label>Company Logo:</label>
+            <input type="file" name="logo" accept="image/*"><br>
+
+            <input type="text" name="company_name" placeholder="Company Name" required>
+            <input type="text" name="gst" placeholder="GST Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            
+            <select name="category" required>
+                <option value="">-- Select Category --</option>
+                <option value="Trader">Trader</option>
+                <option value="Manufacturer">Manufacturer</option>
+                <option value="Exporter">Exporter</option>
+            </select>
+            
+            <input type="text" name="address" placeholder="Company Address" required>
+            <input type="text" name="mobile" placeholder="Contact Number" required>
+            
+            <button type="submit">Save Company</button>
+        </form>
+        <a href="/companies">⬅ Back to Companies</a>
+    </div>
+</body>
+</html>

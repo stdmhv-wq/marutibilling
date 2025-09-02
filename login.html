@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - MARUTIBILLING</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #2980b9, #6dd5fa, #ffffff);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+        .login-box img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .login-box input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .login-box button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-box button:hover {
+            background: #1f5f8b;
+        }
+        .extra-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .extra-links a {
+            display: block;
+            color: #2980b9;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+        .support {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <!-- 🔽 Logo -->
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="MARUTIBILLING Logo">
+        
+        <h2>Login - MARUTIBILLING</h2>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- 🔽 Error Message -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- 🔽 Extra Links -->
+        <div class="extra-links">
+            <a href="/forgot">Forgot Password?</a>
+            <a href="/register">New User? Register Here</a>
+        </div>
+
+        <!-- 🔽 Support Number -->
+        <div class="support">
+            Need Help? Call Support: <b>+91 9512424274</b>
+            Need Help? Email: <b>marutiinfotech22020@gmail.com</b>
+        </div>
+    </div>
+</body>
+</html>
